@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f7fa; --panel: #ffffff; --ink: #111827; --muted: #5d6675; --line: #e2e6ec; --soft: #f0f3f7;
+  --brand: #1257d6; --brand-ink: #ffffff; --brand-soft: #e8f0fe;
+  --ahead: #b42318; --ahead-bg: #fdecea; --behind: #157347; --behind-bg: #e5f4ec; --same: #5d6675;
+  --high: #b42318; --high-bg: #fdecea; --medium: #9a5b00; --medium-bg: #fdf1dc; --low: #3b5bdb; --low-bg: #e8edfd;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1117; --panel: #151b23; --ink: #e6ebf1; --muted: #98a3b3; --line: #262e39; --soft: #1b222c;
+    --brand: #5b9bff; --brand-ink: #0b1220; --brand-soft: #16233d;
+    --ahead: #ff8a7d; --ahead-bg: #3a1714; --behind: #5fd39a; --behind-bg: #10301f; --same: #98a3b3;
+    --high: #ff8a7d; --high-bg: #3a1714; --medium: #f0b252; --medium-bg: #3a2a0c; --low: #8ea6ff; --low-bg: #1b2447;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1117; --panel: #151b23; --ink: #e6ebf1; --muted: #98a3b3; --line: #262e39; --soft: #1b222c;
+  --brand: #5b9bff; --brand-ink: #0b1220; --brand-soft: #16233d;
+  --ahead: #ff8a7d; --ahead-bg: #3a1714; --behind: #5fd39a; --behind-bg: #10301f; --same: #98a3b3;
+  --high: #ff8a7d; --high-bg: #3a1714; --medium: #f0b252; --medium-bg: #3a2a0c; --low: #8ea6ff; --low-bg: #1b2447;
+}
+@theme inline {
+  --color-bg: var(--bg); --color-panel: var(--panel); --color-ink: var(--ink); --color-muted: var(--muted);
+  --color-line: var(--line); --color-soft: var(--soft); --color-brand: var(--brand); --color-brand-ink: var(--brand-ink); --color-brand-soft: var(--brand-soft);
+  --color-ahead: var(--ahead); --color-ahead-bg: var(--ahead-bg); --color-behind: var(--behind); --color-behind-bg: var(--behind-bg);
+  --color-high: var(--high); --color-high-bg: var(--high-bg); --color-medium: var(--medium); --color-medium-bg: var(--medium-bg); --color-low: var(--low); --color-low-bg: var(--low-bg);
+}
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+/* In the components layer so Tailwind utilities such as pl-9 can override them. */
+@layer components {
+.field { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; color: var(--ink); width: 100%; }
+.field::placeholder { color: var(--muted); opacity: 0.55; }
+.field:focus, button:focus-visible, a:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+.cell { background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 4px 6px; width: 100%; color: var(--ink); }
+.cell:hover { border-color: var(--line); }
+.cell:focus { border-color: var(--brand); outline: none; background: var(--panel); }
+}
+table { border-collapse: collapse; width: 100%; }
+th { text-align: left; font-weight: 600; color: var(--muted); font-size: 12px; white-space: nowrap; }
+th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; font-size: 12px; }
+  .print-break { break-inside: avoid; }
+}
